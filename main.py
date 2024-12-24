@@ -6,7 +6,9 @@ import chromadb
 import os
 
 # Set your OpenAI API key
-os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
+with open("openai_api_key.txt", "r") as f:
+    os.environ["OPENAI_API_KEY"] = f.read()
+# os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
 
 def load_and_process_pdfs(pdf_directory, persist_directory="./chroma_db", chunk_size=1000, chunk_overlap=200):
     """
@@ -122,7 +124,7 @@ def load_existing_db(persist_directory="./chroma_db"):
 
 def main():
     # Example usage
-    pdf_dir = "path/to/your/pdfs"
+    pdf_dir = "./sample_pdfs"
     persist_dir = "./chroma_db"
     
     # Check if database already exists
